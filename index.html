@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<header>
+  <style>
+    body {font-family: Arial, Helvetica, sans-serif;}
+  </style>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script>  
+    $(document).ready(function(){
+      urlParam = function(name){
+        var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+        if (results == null){
+           return null;
+        }
+        else {
+           return decodeURI(results[1]) || 0;
+        }
+      }
+      copyText = function(){
+          var copyText = document.getElementById("codeString");
+          /* Select the text field */
+          copyText.select();
+          /* Copy the text inside the text field */
+          document.execCommand("copy");
+      }
+
+      var codeString = urlParam('code');
+      document.getElementById("codeString").value = codeString
+    });
+     
+  </script>
+</header>
+
+<img width="250px"src="https://looker.com/assets/img/images/logos/looker.svg"></img>
+<h1>Authorization complete </h1>
+<p>Please copy the following token and paste it into the prompt:</p>
+<button onclick="copyText()" height="100px" width="100px">Copy To Clipboard</button>
+<textarea id="codeString" height="100px" width="200px" style="overflow:hidden;"></textarea>
+<p> (you may close this window afterwards) </p>
